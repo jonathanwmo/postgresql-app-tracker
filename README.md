@@ -53,6 +53,7 @@ Now back in the command line with the same directory as 'app_table.py', running 
 
 The only required field to create a new entry is company, and the table will be printed out afterwards.
 Leaving all the inputs blank will print out the table as well.
+![image not found](postgresql-app-tracker-example.png)
 
 
 Note: Users may have to run chmod +x on the python scripts to allow them to be run as executables

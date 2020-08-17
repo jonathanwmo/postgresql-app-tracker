@@ -94,6 +94,6 @@ def main():
 
     end = time.time()
     print("\nFinished in {} seconds".format(end-start))
-# UPDATE apps_2020_2021 SET company='GELI' WHERE company='Global Entrepreneurial Leaders Institute';
+
 if __name__ == "__main__":
     main()

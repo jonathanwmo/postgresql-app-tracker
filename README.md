@@ -32,10 +32,14 @@ Installation [^](#postgresql-application-tracker)
 To install Python, follow the [python.org](python.org) tutorial to install the correct version of Python.
 Next make sure pip is installed on your machine, and then run `pip install -r requirements.txt` to make sure all necessary packages are installed.
 
-To install PostgreSQL, follow the [https://www.postgresql.org/download/] (postgresql.org) tutorial to download based on the operating system.
+To install PostgreSQL, follow the [https://www.postgresql.org/download/](postgresql.org/download) tutorial to download based on the operating system.
+
 Once installed, run `psql postgres` in a command line to activate a psql terminal. 
+
 Next run `CREATE DATABASE <dbname>` to create the given database.
+
 Running `\c <dbname>` should connect you to the database as your current user.
+
 To create the table, `CREATE TABLE apps_2020_2021 (Company VARCHAR,
 Progress VARCHAR,
 Interview_Status VARCHAR,
@@ -44,7 +48,9 @@ Response_Date VARCHAR,
 Listing_Link VARCHAR,
 Contacts VARCHAR,
 Notes VARCHAR);` should create the table with all the necessary columns and column types.
+
 Now back in the command line with the same directory as 'app_table.py', running `python app_table.py` will let you input values.
+
 The only required field to create a new entry is company, and the table will be printed out afterwards.
 Leaving all the inputs blank will print out the table as well.
 

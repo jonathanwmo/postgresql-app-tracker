@@ -57,7 +57,7 @@ class Table:
                                 )
 
     def remove_app(self, company):
-        print("\n\tDeleting {} from '{}' table".format(company.title(), self.tablename))
+        print("\n\tlsDeleting {} from '{}' table".format(company.title(), self.tablename))
         with self.conn:
             self.c.execute('''
             DELETE FROM {} WHERE company='{}';

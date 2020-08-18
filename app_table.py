@@ -22,7 +22,14 @@ class Table:
                 if app.progress is None:
                     app.progress = 'Applied'
                 # TODO: if row doesn't exist, make new entry for it
-                print("Inserting new company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None)))
+                mystr = "Inserting new company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None))
+                if len(mystr) > 150:
+                    index = 150
+                    while mystr[index] != " ":
+                        index -= 1
+                    mystr = '\t' + mystr[:index] + '\n\t' + mystr[index+1:]
+                print(mystr)
+
                 self.c.execute("""
                                 INSERT INTO {} ({})
                                 VALUES ({})
@@ -32,7 +39,14 @@ class Table:
                                            )
                                 )
             else: # TODO: if row already exists, update all fields besides company name
-                print("Updating company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None)))
+                mystr = "Updating company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None))
+                if len(mystr) > 150:
+                    index = 150
+                    while mystr[index] != " ":
+                        index -= 1
+                    mystr = '\t' + mystr[:index] + '\n\t' + mystr[index+1:]
+                print(mystr)
+
                 self.c.execute("""
                                 UPDATE {} 
                                 SET {}
@@ -43,6 +57,7 @@ class Table:
                                 )
 
     def remove_app(self, company):
+        print("Deleting {} from '{}' table".format(company.title(), self.tablename.title()))
         with self.conn:
             self.c.execute('''
             DELETE FROM {} WHERE company='{}';
@@ -58,11 +73,18 @@ class Table:
                 for i in range(len(row)):
                     if row[i] is None:
                         row[i] = ""
+                    if len(row[i]) > 30:
+                        index = len(row[i])//2
+                        if "https:" not in row[i]:
+                            while row[i][index] != " ":
+                                index += 1
+                        elif "https:" in row[i]:
+                            while row[i][index] != "/":
+                                index += 1
+                        row[i] = row[i][:index] + '\n' + row[i][index:]
                 table.add_row(list(row))
             table.align['Company'] = 'l'
             table.align['Progress'] = 'l'
-            table.align['Listing Link'] = 'l'
-            print()
             print(table)
 
 def main():
@@ -89,7 +111,7 @@ def main():
                      notes=notes)
 
     mytable.insert_app(app)
-    # mytable.remove_app("Qualtrics")
+    # mytable.remove_app('Zillow')
     mytable.print_table(app)
 
     end = time.time()

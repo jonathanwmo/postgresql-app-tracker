@@ -52,15 +52,15 @@ The only required field to create a new entry is company, and the table will be 
 Leaving all the inputs blank will print out the table as well.
 
 ![image not found](postgres-example1.png)
-> Adding new entry with most fields filled.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adding new entry with most fields filled. <br /><br />
 
 
 ![image not found](postgres-example2.png)
-> Adding new entry with minimal fields filled.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adding new entry with minimal fields filled. <br /><br />
 
 
 ![image not found](postgres-example3.png)
-> Editing an existing entry.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Editing an existing entry. <br /><br />
 
 
 

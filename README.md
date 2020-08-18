@@ -1,6 +1,3 @@
-# postgresql-app-tracker
-A PostgreSQL and Python database and UI system to track application statuses.
-
 PostgreSQL Application Tracker
 ======================
 1. [Introduction](#introduction-)

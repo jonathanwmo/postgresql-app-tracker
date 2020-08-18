@@ -3,6 +3,7 @@ PostgreSQL Application Tracker
 1. [Introduction](#introduction-)
 2. [Project Layout](#project-layout-)
 3. [Installation](#installation-)
+4. [Demo](#demo-)
 
 Introduction [^](#postgresql-application-tracker)
 ------------
@@ -46,6 +47,9 @@ Listing_Link VARCHAR,
 Contacts VARCHAR,
 Notes VARCHAR);` should create the table with all the necessary columns and column types.
 
+
+Demo [^](#postgresql-application-tracker)
+----
 Now back in the command line with the same directory as 'app_table.py', running `python app_table.py` will let you input values.
 
 The only required field to create a new entry is company, and the table will be printed out afterwards.

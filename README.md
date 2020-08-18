@@ -51,13 +51,15 @@ Now back in the command line with the same directory as 'app_table.py', running 
 The only required field to create a new entry is company, and the table will be printed out afterwards.
 Leaving all the inputs blank will print out the table as well.
 ![image not found](postgres-example1.png)
-    Adding a new entry into the table with minimal info.
+> Adding a new entry with more info filled.
+
 
 ![image not found](postgres-example2.png)
-    Adding a new entry with more info filled.
+> Adding a new entry into the table with minimal info.
+
 
 ![image not found](postgres-example3.png)
-    Editing an existing entry.
+> Editing an existing entry.
 
 
 

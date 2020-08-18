@@ -21,14 +21,14 @@ class Table:
                     app.apply_date = date.today()
                 if app.progress is None:
                     app.progress = 'Applied'
-                # TODO: if row doesn't exist, make new entry for it
+
                 mystr = "Inserting new company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None))
-                if len(mystr) > 150:
-                    index = 150
+                if len(mystr) > 175:
+                    index = 175
                     while mystr[index] != " ":
                         index -= 1
-                    mystr = '\t' + mystr[:index] + '\n\t' + mystr[index+1:]
-                print(mystr)
+                    mystr = mystr[:index] + '\n\t' + mystr[index+1:]
+                print('\n\t' + mystr)
 
                 self.c.execute("""
                                 INSERT INTO {} ({})
@@ -38,14 +38,14 @@ class Table:
                                            ', '.join("'" + str(x) + "'" for x in vars(app).values() if x is not None),
                                            )
                                 )
-            else: # TODO: if row already exists, update all fields besides company name
+            else:
                 mystr = "Updating company: {}, with new fields: {}".format(app.company, ', '.join(str(x)+'='+ "'"+str(vars(app)[x])+"'" for x in vars(app).keys() if vars(app)[x] is not None))
-                if len(mystr) > 150:
-                    index = 150
+                if len(mystr) > 175:
+                    index = 175
                     while mystr[index] != " ":
                         index -= 1
-                    mystr = '\t' + mystr[:index] + '\n\t' + mystr[index+1:]
-                print(mystr)
+                    mystr = mystr[:index] + '\n\t' + mystr[index+1:]
+                print('\n\t' + mystr)
 
                 self.c.execute("""
                                 UPDATE {} 
@@ -57,7 +57,7 @@ class Table:
                                 )
 
     def remove_app(self, company):
-        print("Deleting {} from '{}' table".format(company.title(), self.tablename.title()))
+        print("\n\tDeleting {} from '{}' table".format(company.title(), self.tablename))
         with self.conn:
             self.c.execute('''
             DELETE FROM {} WHERE company='{}';
@@ -111,7 +111,9 @@ def main():
                      notes=notes)
 
     mytable.insert_app(app)
+    # mytable.remove_app('EMPTY')
     # mytable.remove_app('Zillow')
+    # mytable.remove_app('NASA')
     mytable.print_table(app)
 
     end = time.time()

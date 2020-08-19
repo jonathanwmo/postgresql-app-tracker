@@ -44,9 +44,9 @@ class Table:
                 print('\n\t' + mystr)
 
                 self.c.execute(
-                    """
-                                INSERT INTO {} ({})
-                                VALUES ({})
+                    """ 
+                                INSERT INTO {} ({}) 
+                                VALUES ({}) 
                                 """.format(
                         self.tablename, ', '.join(
                             str(x) for x in vars(app).keys() if vars(app)[x] is not None), ', '.join(
@@ -62,9 +62,9 @@ class Table:
                 print('\n\t' + mystr)
 
                 self.c.execute(
-                    """
-                                UPDATE {}
-                                SET {}
+                    """ 
+                                UPDATE {} 
+                                SET {} 
                                 WHERE company='{}'""".format(
                         self.tablename,
                         ', '.join(
@@ -88,8 +88,8 @@ class Table:
                 company.title(),
                 self.tablename))
         with self.conn:
-            self.c.execute('''
-            DELETE FROM {} WHERE company='{}';
+            self.c.execute(''' 
+            DELETE FROM {} WHERE company='{}'; 
             '''.format(self.tablename, company))
 
     def print_table(self, app):

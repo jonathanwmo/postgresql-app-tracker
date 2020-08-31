@@ -34,7 +34,7 @@ class Table:
                 if app.progress is None:
                     app.progress = 'Applied'
 
-                mystr = "Inserting new company: {}, with new fields: {}".format(app.company, ', '.join(str(x)
+                mystr = """Inserting new company: {}, with new fields: {}""".format(app.company, ', '.join(str(x)
                  + '=' + "'" + str(vars(app)[x]) + "'" for x in vars(app).keys() if vars(app)[x] is not None))
                 if len(mystr) > 175:
                     index = 175
@@ -52,7 +52,7 @@ class Table:
                             str(x) for x in vars(app).keys() if vars(app)[x] is not None), ', '.join(
                             "'" + str(x) + "'" for x in vars(app).values() if x is not None), ))
             else:
-                mystr = "Updating company: {}, with new fields: {}".format(app.company, ', '.join(str(x) +
+                mystr = """Updating company: {}, with new fields: {}""".format(app.company, ', '.join(str(x) +
                  '=' + "'" + str(vars(app)[x]) + "'" for x in vars(app).keys() if vars(app)[x] is not None))
                 if len(mystr) > 175:
                     index = 175
@@ -84,7 +84,7 @@ class Table:
         :return: void
         '''
         print(
-            "\n\tlsDeleting {} from '{}' table".format(
+            "\n\tDeleting {} from '{}' table".format(
                 company.title(),
                 self.tablename))
         with self.conn:
@@ -109,18 +109,24 @@ class Table:
                 for i in range(len(row)):
                     if row[i] is None:
                         row[i] = ""
-                    if len(row[i]) > 30:
+                    if len(row[i]) > 45:
                         index = len(row[i]) // 2
                         if "https:" not in row[i]:
                             while row[i][index] != " ":
                                 index += 1
+                            row[i] = row[i][:index] + '\n' + row[i][index:]
                         elif "https:" in row[i]:
-                            while row[i][index] != "/":
-                                index += 1
-                        row[i] = row[i][:index] + '\n' + row[i][index:]
+                            row[i] = row[i][:45] + "..."
+                            # try:
+                            #     mylist = ["/", "-", ".", "=", "?"]
+                            #     while row[i][index] not in mylist:
+                            #         index += 1
+                            # except:
+                            #     index = len(row[i])//2
                 table.add_row(list(row))
             table.align['Company'] = 'l'
             table.align['Progress'] = 'l'
+            table.align['Listing Link'] = 'l'
             print(table)
 
 
@@ -148,7 +154,6 @@ def main():
                       notes=notes)
 
     mytable.insert_app(app)
-
     mytable.print_table(app)
 
     end = time.time()

@@ -1,3 +1,7 @@
 .idea
 exportToHTML
+.DS_Store
+__pychace__
+.gitattributes
+__init__.py
 
